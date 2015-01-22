@@ -1,5 +1,5 @@
 # Please adjust the variables in the top
-# according to your needs for local testing
+# according to your needs
 
 # Name for the Docker image
 PROJECT = mysql-archiver
@@ -64,3 +64,8 @@ push:
 pull:
 	docker pull $(REGISTRY)/$(COMPANY)/$(PROJECT)
 
+# Create your application on Giant Swarm and start it
+deploy:
+	swarm up \
+	  --var=mysqldb=$(MYSQL_DB_NAME) \
+	  --var=mysqlpasswd=$(MYSQL_ROOT_PASSWORD)
