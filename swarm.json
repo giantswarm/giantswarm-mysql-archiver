@@ -9,8 +9,8 @@
           "image": "mysql:5.5",
           "ports": ["3306"],
           "env": {
-            "MYSQL_ROOT_PASSWORD": "some-password",
-            "MYSQL_DATABASE": "mydb"
+            "MYSQL_ROOT_PASSWORD": "$mysqlpasswd",
+            "MYSQL_DATABASE": "$mysqldb"
           },
           "volumes": [
             {
@@ -28,9 +28,9 @@
           "component_name": "mysql-archiver",
           "image": "registry.giantswarm.io/yourusername/mysql-archiver:latest",
           "env": {
-            "DB_NAME": "mydb",
+            "DB_NAME": "$mysqldb",
             "DB_USER": "root",
-            "DB_PASSWORD": "some-password",
+            "DB_PASSWORD": "$mysqlpasswd",
             "S3_BUCKET": "your-bucket-name/your-path-to-mysql-backups/",
             "AWS_ACCESS_KEY_ID": "your-aws-access-key-id",
             "AWS_SECRET_ACCESS_KEY": "your-aws-secret-access-key",
