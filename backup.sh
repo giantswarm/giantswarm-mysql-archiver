@@ -19,13 +19,12 @@ dbpass=$DB_PASSWORD
 # Amazon S3 target bucket
 bucket=$S3_BUCKET
 
-# pattern to create subdirectories from dateelements,
+# pattern to create subdirectories from date elements,
 # e. g. '%Y/%m/%d' or '%Y/%Y-%m-%d'
 pathpattern=$PATH_DATEPATTERN
 
 # initially wait a minute before first backup
-#sleep 60
-sleep 1
+sleep 60
 
 count=1
 
