@@ -14,4 +14,4 @@ RUN pip install awscli
 ADD backup.sh /backup.sh
 RUN chmod 0755 /backup.sh
 
-CMD /backup.sh
+ENTRYPOINT ["/backup.sh"]
