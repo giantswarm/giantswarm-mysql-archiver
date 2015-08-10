@@ -1,53 +1,40 @@
 {
-  "app_name": "mysql-archiver-test",
-  "services": [
-    {
-      "service_name": "db",
-      "components": [
+  "name": "mysql-archiver-test",
+  "components": {
+    "mysql": {
+      "image": "mysql:5.5",
+      "ports": 3306,
+      "env": {
+        "MYSQL_ROOT_PASSWORD": "$mysqlpasswd",
+        "MYSQL_DATABASE": "$mysqldb"
+      },
+      "volumes": [
         {
-          "component_name": "mysql",
-          "image": "mysql:5.5",
-          "ports": ["3306"],
-          "env": {
-            "MYSQL_ROOT_PASSWORD": "$mysqlpasswd",
-            "MYSQL_DATABASE": "$mysqldb"
-          },
-          "volumes": [
-            {
-              "path": "/var/lib/mysql",
-              "size": "2 GB"
-            }
-          ]
+          "path": "/var/lib/mysql",
+          "size": "2 GB"
         }
       ]
     },
-    {
-      "service_name": "archiver",
-      "components": [
+    "mysql-archiver": {
+      "image": "registry.giantswarm.io/yourusername/mysql-archiver:latest",
+      "env": {
+        "DB_NAME": "$mysqldb",
+        "DB_USER": "root",
+        "DB_PASSWORD": "$mysqlpasswd",
+        "S3_BUCKET": "your-bucket-name/your-path-to-mysql-backups/",
+        "AWS_ACCESS_KEY_ID": "your-aws-access-key-id",
+        "AWS_SECRET_ACCESS_KEY": "your-aws-secret-access-key",
+        "AWS_DEFAULT_REGION": "eu-central-1",
+        "BACKUP_INTERVAL": "60",
+        "PATH_DATEPATTERN": "%Y/%m"
+      },
+      "links": [
         {
-          "component_name": "mysql-archiver",
-          "image": "registry.giantswarm.io/yourusername/mysql-archiver:latest",
-          "env": {
-            "DB_NAME": "$mysqldb",
-            "DB_USER": "root",
-            "DB_PASSWORD": "$mysqlpasswd",
-            "S3_BUCKET": "your-bucket-name/your-path-to-mysql-backups/",
-            "AWS_ACCESS_KEY_ID": "your-aws-access-key-id",
-            "AWS_SECRET_ACCESS_KEY": "your-aws-secret-access-key",
-            "AWS_DEFAULT_REGION": "eu-central-1",
-            "BACKUP_INTERVAL": "60",
-            "PATH_DATEPATTERN": "%Y/%m"
-          },
-          "dependencies": [
-            {
-              "name": "db/mysql",
-              "port": 3306,
-              "alias": "mysql"
-            }
-          ],
-          "ports": ["3000"]
+          "component": "mysql",
+          "target_port": 3306
         }
-      ]
+      ],
+      "ports": 3000
     }
-  ]
+  }
 }

@@ -10,4 +10,4 @@ This tool allows you to periodically dump a MySQL database and store the dump to
 
 * `Dockerfile`: The blueprint for your Docker image doing the MySQL backups.
 
-* `swarm.json`: Blueprint for your application configuration. Adjust according to your needs.
+* `swarm.json`: Blueprint for your service definition. Adjust according to your needs.

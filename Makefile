@@ -7,7 +7,7 @@ PROJECT = mysql-archiver
 # Registry server name
 REGISTRY = registry.giantswarm.io
 
-# Namespace string for your Docker image. 
+# Namespace string for your Docker image.
 # The easiest is to use your Giant Swarm username.
 COMPANY :=  $(shell swarm user)
 
@@ -64,8 +64,8 @@ push:
 pull:
 	docker pull $(REGISTRY)/$(COMPANY)/$(PROJECT)
 
-# Create your application on Giant Swarm and start it
+# Create your service on Giant Swarm and start it
 deploy:
 	swarm up \
-	  --var=mysqldb=$(MYSQL_DB_NAME) \
-	  --var=mysqlpasswd=$(MYSQL_ROOT_PASSWORD)
+		--var=mysqldb=$(MYSQL_DB_NAME) \
+		--var=mysqlpasswd=$(MYSQL_ROOT_PASSWORD)

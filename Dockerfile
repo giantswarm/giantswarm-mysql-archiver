@@ -1,6 +1,4 @@
-FROM debian:wheezy
-
-MAINTAINER Marian Steinbach <marian@giantswarm.io>
+FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
 
