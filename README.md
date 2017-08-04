@@ -1,8 +1,10 @@
 # MySQL Archiver/Backupper for Docker and Giant Swarm
 
+**Note: This example is outdated, as it was written for a platform no longer offered by Giant Swarm.**
+
 This tool allows you to periodically dump a MySQL database and store the dump to Amazon AWS S3. It is part of a larger tutorial:
 
-[MySQL with Backups on Giant Swarm](http://docs.giantswarm.io/guides/mysql-backup/)
+[MySQL with Backups on Giant Swarm](https://firstgen-docs.giantswarm.io/guides/mysql-backup/)
 
 ## Contents of this repository
 
